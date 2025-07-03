@@ -1,6 +1,5 @@
 package org.incubyte;
 
-import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
@@ -27,6 +26,16 @@ public class StringCalculator {
     }
 
     private int sum(String[] parts) {
-        return Arrays.stream(parts).mapToInt(Integer::parseInt).sum();
+        int total = 0;
+
+        for (String numStr : parts) {
+            int num = Integer.parseInt(numStr);
+            if (num < 0) {
+                throw new IllegalArgumentException("negatives not allowed: " + num);
+            }
+            total += num;
+        }
+
+        return total;
     }
 }

@@ -45,11 +45,11 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void add_givenNegativeNumbers_throwException() {
+    void add_givenMultipleNegatives_throwsWithAllInMessage() {
         Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
             stringCalculator.add("1,-2,3,-4");
         });
 
-        Assertions.assertEquals("negatives not allowed: -2", exception.getMessage());
+        Assertions.assertEquals("negatives not allowed: [-2, -4]", exception.getMessage());
     }
 }

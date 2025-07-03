@@ -43,4 +43,15 @@ public class StringCalculatorTest {
     void add_givenCustomDelimiter_returnsAdditionOfAll() {
         Assertions.assertEquals(3, stringCalculator.add("//;\n1;2"));
     }
+
+    @Test
+    void add_givenNegativeNumbers_throwException() {
+        StringCalculator calc = new StringCalculator();
+
+        Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            stringCalculator.add("1,-2,3,-4");
+        });
+
+        Assertions.assertEquals("negatives not allowed: -2", exception.getMessage());
+    }
 }

@@ -7,7 +7,11 @@ public class StringCalculator {
     public int add(String numbers) {
         if (numbers.isEmpty()) return 0;
 
-        String[] nums = numbers.split(",|\n");
+        String[] nums = split(numbers);
         return Arrays.stream(nums).mapToInt(Integer::parseInt).sum();
+    }
+
+    private String[] split(String numbers) {
+        return numbers.split(",|\n");
     }
 }

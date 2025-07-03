@@ -32,4 +32,9 @@ public class StringCalculatorTest {
     void add_givenMultipleCommaSeparatedNumbers_returnsAdditionOfAll() {
         Assertions.assertEquals(28, stringCalculator.add("6,3,7,8,4"));
     }
+
+    @Test
+    void add_givenCommaAndNewlineSeparatedNumbers_returnsAdditionOfAll() {
+        Assertions.assertEquals(65, stringCalculator.add("4\n8,5\n3,45"));
+    }
 }

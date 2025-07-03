@@ -6,7 +6,14 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
+    private int callCount = 0; // track number of Add calls
+
+    public int getCalledCount() {
+        return callCount;
+    }
+
     public int add(String numbers) {
+        callCount++;
         if (numbers.isEmpty()) return 0;
 
         String[] nums = split(numbers);

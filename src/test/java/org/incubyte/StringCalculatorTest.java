@@ -27,4 +27,9 @@ public class StringCalculatorTest {
     public void add_givenTwoCommaSeparatedNumbers_returnsAdditionOfBoth() {
         Assertions.assertEquals(3, stringCalculator.add("1,2"));
     }
+
+    @Test
+    void add_givenMultipleCommaSeparatedNumbers_returnsAdditionOfAll() {
+        Assertions.assertEquals(28, stringCalculator.add("6,3,7,8,4"));
+    }
 }

@@ -46,8 +46,6 @@ public class StringCalculatorTest {
 
     @Test
     void add_givenNegativeNumbers_throwException() {
-        StringCalculator calc = new StringCalculator();
-
         Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
             stringCalculator.add("1,-2,3,-4");
         });

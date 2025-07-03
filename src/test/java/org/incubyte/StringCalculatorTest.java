@@ -3,15 +3,15 @@ package org.incubyte;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class StringCalculatorTest {
 
-    private static StringCalculator stringCalculator;
+    private StringCalculator stringCalculator;
 
-    @BeforeAll
-    public static void setUp() {
+    @BeforeEach
+    public void setUp() {
         stringCalculator = new StringCalculator();
     }
 
@@ -53,5 +53,17 @@ public class StringCalculatorTest {
         });
 
         assertEquals("negatives not allowed: [-2, -4]", exception.getMessage());
+    }
+
+    @Test
+    void getCalledCount_returnNumberOfAddCalls() {
+        assertEquals(0, stringCalculator.getCalledCount()); // before any calls
+
+        stringCalculator.add("1,2");
+        assertEquals(1, stringCalculator.getCalledCount());
+
+        stringCalculator.add("3");
+        stringCalculator.add("4,5,6");
+        assertEquals(3, stringCalculator.getCalledCount());
     }
 }

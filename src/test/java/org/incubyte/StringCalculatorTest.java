@@ -17,4 +17,9 @@ public class StringCalculatorTest {
     public void add_givenEmptyString_returnsZero() {
         Assertions.assertEquals(0, stringCalculator.add(""));
     }
+
+    @Test
+    public void add_givenSingleNumber_returnsItSelf() {
+        Assertions.assertEquals(5, stringCalculator.add("5"));
+    }
 }

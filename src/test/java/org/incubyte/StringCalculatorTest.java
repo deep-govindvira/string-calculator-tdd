@@ -22,4 +22,9 @@ public class StringCalculatorTest {
     public void add_givenSingleNumber_returnsItSelf() {
         Assertions.assertEquals(5, stringCalculator.add("5"));
     }
+
+    @Test
+    public void add_givenTwoCommaSeparatedNumbers_returnsAdditionOfBoth() {
+        Assertions.assertEquals(3, stringCalculator.add("1,2"));
+    }
 }

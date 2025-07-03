@@ -1,6 +1,7 @@
 package org.incubyte;
 
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 public class StringCalculator {
 
@@ -12,7 +13,17 @@ public class StringCalculator {
     }
 
     private String[] split(String numbers) {
-        return numbers.split(",|\n");
+        String delimiter = ",|\n"; // default delimiters
+
+        // Check for custom delimiter pattern
+        if (numbers.startsWith("//")) {
+            int newlineIndex = numbers.indexOf('\n');
+            String customDelimiter = numbers.substring(2, newlineIndex);
+            delimiter = Pattern.quote(customDelimiter); // quote to escape regex meta characters
+            numbers = numbers.substring(newlineIndex + 1);
+        }
+
+        return numbers.split(delimiter);
     }
 
     private int sum(String[] parts) {

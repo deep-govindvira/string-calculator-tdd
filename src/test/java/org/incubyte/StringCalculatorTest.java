@@ -37,4 +37,10 @@ public class StringCalculatorTest {
     void add_givenCommaAndNewlineSeparatedNumbers_returnsAdditionOfAll() {
         Assertions.assertEquals(65, stringCalculator.add("4\n8,5\n3,45"));
     }
+
+    // format: "//[delimiter]\n[numbers]".
+    @Test
+    void add_givenCustomDelimiter_returnsAdditionOfAll() {
+        Assertions.assertEquals(3, stringCalculator.add("//;\n1;2"));
+    }
 }

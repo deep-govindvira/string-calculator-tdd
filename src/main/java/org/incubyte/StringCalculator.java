@@ -1,5 +1,7 @@
 package org.incubyte;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
@@ -26,14 +28,19 @@ public class StringCalculator {
     }
 
     private int sum(String[] parts) {
+        List<Integer> negatives = new ArrayList<>();
         int total = 0;
 
         for (String numStr : parts) {
             int num = Integer.parseInt(numStr);
             if (num < 0) {
-                throw new IllegalArgumentException("negatives not allowed: " + num);
+                negatives.add(num);
             }
             total += num;
+        }
+
+        if (!negatives.isEmpty()) {
+            throw new IllegalArgumentException("negatives not allowed: " + negatives);
         }
 
         return total;

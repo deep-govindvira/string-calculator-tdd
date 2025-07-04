@@ -78,4 +78,19 @@ public class StringCalculatorTest {
     void add_givenLongDelimiterWithBrackets_returnsSum() {
         assertEquals(6, stringCalculator.add("//[***]\n1***2***3"));
     }
+
+    @Test
+    void add_givenMultipleDelimiters_returnsSum() {
+        assertEquals(6, stringCalculator.add("//[*][%]\n1*2%3"));
+    }
+
+    @Test
+    void add_givenMultipleLongDelimiters_returnsSum() {
+        assertEquals(6, stringCalculator.add("//[***][%%]\n1***2%%3"));
+    }
+
+    @Test
+    void add_givenSpecialCharacterDelimiters_returnsSum() {
+        assertEquals(10, stringCalculator.add("//[.] [!]\n2.3!5".replace(" ", "")));  // escape test
+    }
 }

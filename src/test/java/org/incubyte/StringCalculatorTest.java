@@ -93,4 +93,9 @@ public class StringCalculatorTest {
     void add_givenSpecialCharacterDelimiters_returnsSum() {
         assertEquals(10, stringCalculator.add("//[.] [!]\n2.3!5".replace(" ", "")));  // escape test
     }
+
+    @Test
+    void add_givenMultipleLongDelimitersWithSpecialCharacters_returnsSum() {
+        assertEquals(6, stringCalculator.add("//[**][%%]\n1**2%%3"));
+    }
 }

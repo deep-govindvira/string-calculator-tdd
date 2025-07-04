@@ -26,22 +26,23 @@ public class StringCalculator {
         if (numbers.startsWith("//")) {
             int newlineIndex = numbers.indexOf('\n');
             String delimiterSection = numbers.substring(2, newlineIndex);
-            numbers = numbers.substring(newlineIndex + 1); // update input after delimiter
+            numbers = numbers.substring(newlineIndex + 1); // skip the delimiter part
 
-            // Case: delimiter is in the form //[***]
-            if (delimiterSection.startsWith("[") && delimiterSection.endsWith("]")) {
+            // Handle multiple delimiters like //[***][%%]
+            if (delimiterSection.contains("[") && delimiterSection.contains("]")) {
                 List<String> delimiters = new ArrayList<>();
                 int i = 0;
                 while (i < delimiterSection.length()) {
                     int start = delimiterSection.indexOf('[', i);
                     int end = delimiterSection.indexOf(']', start);
-                    String extractedDelimiter = delimiterSection.substring(start + 1, end);
-                    delimiters.add(Pattern.quote(extractedDelimiter));
+                    if (start == -1 || end == -1) break;
+                    String d = delimiterSection.substring(start + 1, end);
+                    delimiters.add(Pattern.quote(d));
                     i = end + 1;
                 }
                 delimiter = String.join("|", delimiters);
             } else {
-                // Case: single char delimiter like //;\n1;2
+                // Single-char delimiter
                 delimiter = Pattern.quote(delimiterSection);
             }
         }

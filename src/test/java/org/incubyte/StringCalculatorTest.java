@@ -69,10 +69,8 @@ public class StringCalculatorTest {
 
     @Test
     void add_givenNumbersIncludeOver1000_returnsSumIgnoringOver1000() {
-        StringCalculator calc = new StringCalculator();
-
-        assertEquals(2, calc.add("2,1001"));
-        assertEquals(1002, calc.add("2,1000")); // 1000 is included
-        assertEquals(0, calc.add("1001,2000"));
+        assertEquals(2, stringCalculator.add("2,1001"));
+        assertEquals(1002, stringCalculator.add("2,1000")); // 1000 is included
+        assertEquals(0, stringCalculator.add("1001,2000"));
     }
 }

@@ -73,4 +73,9 @@ public class StringCalculatorTest {
         assertEquals(1002, stringCalculator.add("2,1000")); // 1000 is included
         assertEquals(0, stringCalculator.add("1001,2000"));
     }
+
+    @Test
+    void add_givenLongDelimiterWithBrackets_returnsSum() {
+        assertEquals(6, stringCalculator.add("//[***]\n1***2***3"));
+    }
 }

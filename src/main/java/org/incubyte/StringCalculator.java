@@ -23,12 +23,27 @@ public class StringCalculator {
     private String[] split(String numbers) {
         String delimiter = ",|\n"; // default delimiters
 
-        // Check for custom delimiter pattern
         if (numbers.startsWith("//")) {
             int newlineIndex = numbers.indexOf('\n');
-            String customDelimiter = numbers.substring(2, newlineIndex);
-            delimiter = Pattern.quote(customDelimiter); // quote to escape regex meta characters
-            numbers = numbers.substring(newlineIndex + 1);
+            String delimiterSection = numbers.substring(2, newlineIndex);
+            numbers = numbers.substring(newlineIndex + 1); // update input after delimiter
+
+            // Case: delimiter is in the form //[***]
+            if (delimiterSection.startsWith("[") && delimiterSection.endsWith("]")) {
+                List<String> delimiters = new ArrayList<>();
+                int i = 0;
+                while (i < delimiterSection.length()) {
+                    int start = delimiterSection.indexOf('[', i);
+                    int end = delimiterSection.indexOf(']', start);
+                    String extractedDelimiter = delimiterSection.substring(start + 1, end);
+                    delimiters.add(Pattern.quote(extractedDelimiter));
+                    i = end + 1;
+                }
+                delimiter = String.join("|", delimiters);
+            } else {
+                // Case: single char delimiter like //;\n1;2
+                delimiter = Pattern.quote(delimiterSection);
+            }
         }
 
         return numbers.split(delimiter);

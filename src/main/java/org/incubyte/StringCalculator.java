@@ -42,8 +42,9 @@ public class StringCalculator {
             int num = Integer.parseInt(numStr);
             if (num < 0) {
                 negatives.add(num);
+            } else if (num <= 1000) {
+                total += num;
             }
-            total += num;
         }
 
         if (!negatives.isEmpty()) {
